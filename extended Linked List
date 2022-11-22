@@ -1,0 +1,45 @@
+class Node:  #creating a node class
+    def __init__(self, data):
+        self.item = data
+        self.ref = None     #same as next null in c++
+        self.weight = len(data)
+        self.totalWeight = 0
+    
+class LinkedList:   #creating Linked list class
+    def __init__(self):
+        self.head = None
+        self.tail = None
+        self.numOfNodes = 0
+    
+    def insert_atstart(self,data):
+        if self.head is None:
+            new_node = Node(data)
+            new_node.ref = self.head    #reference to the first node
+        else:
+            new_node = Node(data)
+            new_node.ref = self.tail    #reference to the first node
+            self.tail = new_node    #point to the newnode, the start
+        self.numOfNodes += 1 
+    
+    def traverse(self): #print the linked list
+        if self.head is None:
+            print("Linked List is empty")
+            return
+        else:
+            temp = self.head
+            while temp is not None:
+                print(temp.item, " ")
+                temp = temp.ref
+
+    def validateNode(self):
+        if self.head is None:
+            if self.numOfNodes is 0:
+                return
+
+new_ll = LinkedList()   #creating an object for that class
+
+new_ll.insert_atstart("Hello")    #just for testing
+new_ll.insert_atstart("Bye")
+new_ll.insert_atstart("Hi")
+
+new_ll.traverse()
