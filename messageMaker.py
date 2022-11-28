@@ -14,6 +14,14 @@ def messageMaker():
     # print (chosenMessage) # uncomment to test to see if it is working
     return (chosenMessage)
 
+def valueGen(encryptedMsg):
+    text = encryptedMsg
+    ascii_values = []
+    for character in text:
+        ascii_values.append(ord(character))
+    ans = sum(ascii_values)
+    return ans
+
 # https://medium.com/quick-code/aes-implementation-in-python-a82f582f51c2
 
 #The class will recieve a key of any length then it will generate a 256bit has from that key.
@@ -68,6 +76,8 @@ def main():
     a = AESCipher(key)
     encryptedMsg = a.encrypt(newMessage)
     print("\n\nthis is the encrypted message: ", encryptedMsg)
+    encryptedValue = valueGen(encryptedMsg)
+    print ("this is the value for this encrypted Message", encryptedValue)
     
     print("\nNow we will decrypt the message")
     DKey = input("Enter the key used before: ")
