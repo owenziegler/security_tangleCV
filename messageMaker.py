@@ -5,6 +5,8 @@ from Crypto.Cipher import AES
 from Crypto import Random
 # from Crypto.Random import get_random_bytes
 #please install venv, pycrypto "pip3 install pycryptodome",
+#pip3 install psycopg2-binary
+# pip install crypto
 
 
 '''in this case we used pre made messages a Car would communicate, this can be always expanded using machine learning'''
