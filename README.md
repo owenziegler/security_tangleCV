@@ -9,3 +9,6 @@ This repository's code simulates a blockchain holding messages between 'vehicles
 - The extended Linked List file is a demonstration of our nodes that are going to be connected, and is meant to stand for vehicles.
 - The messageMaker is our encryption code, where it would want to encrypt the messages that are communication between the nodes. 
 
+**REQUIREMENTS**
+- For the message maker, install pycryptodome using "pip install pycryptodome". If the Crypto package is still not recognized, changing the interpreter being used may help.
+
