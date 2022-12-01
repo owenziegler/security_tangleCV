@@ -98,13 +98,25 @@ class LinkedList:   #creating Linked list class
         temp = self.head
         #if self.head
 
-new_ll = LinkedList()   #creating an object for that class
 
-new_ll.insert_at_current_node("Hello")    #just for testing
-new_ll.insert_at_child_node("Seatbelt unbuckled")
-new_ll.insert_at_current_node("Bye")
-new_ll.insert_at_current_node("Hi")
-new_ll.insert_at_child_node("Stop Right There!")
-
-new_ll.traverse()
-new_ll.traverse_weight()
+def main():
+    list = LinkedList()
+    running = True
+    while running:
+        response1 = input("Would you like to add a new node, display the list, or quit? (n/d/q): ")
+        if response1 == "n":
+            newdata = input("Input data of new node: ")
+            list.insert_at_current_node(newdata)
+        elif response1 == "d":
+            print("Displaying list:")
+            list.traverse()
+            print("Displaying weights:")
+            list.traverse_weight()
+        elif response1 == "q":
+            print("Exiting...")
+            exit()
+        else:
+            print("Invalid response. Please try again")
+            
+if __name__ == "__main__":
+    main()
