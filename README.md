@@ -10,5 +10,30 @@ This repository's code simulates a blockchain holding messages between 'vehicles
 - The messageMaker is our encryption code, where it would want to encrypt the messages that are communication between the nodes. 
 
 **REQUIREMENTS** (still not figured out)
-- For the message maker, install pycryptodome using "pip install pycryptodome". If the Crypto package is still not recognized, changing the interpreter being used may help.
+To install the Crypto packages:
+1- # 👇️ in a virtual environment or using Python 2
+pip install pycryptodome
+
+# 👇️ for python 3 (could also be pip3.10 depending on your version)
+pip3 install pycryptodome
+
+# 👇️ if you get permissions error
+sudo pip3 install pycryptodome
+pip install pycryptodome --user
+
+# 👇️ if you don't have pip in your PATH environment variable
+python -m pip install pycryptodome
+
+# 👇️ for python 3 (could also be pip3.10 depending on your version)
+python3 -m pip install pycryptodome
+
+# 👇️ using py alias (Windows)
+py -m pip install pycryptodome
+
+# 👇️ for Anaconda
+conda install -c conda-forge pycryptodome
+
+# 👇️ for Jupyter Notebook
+!pip install pycryptodome
+
 
