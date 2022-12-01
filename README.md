@@ -6,8 +6,11 @@ This repository's code simulates a blockchain holding messages between 'vehicles
 
 **FOR TESTING OUR CODE**
 - The files that should be cloned and to be tested are: extended Linked List, and our messageMaker.py 
-- The extended Linked List file is a demonstration of our nodes that are going to be connected, and is meant to stand for vehicles.
+- The extended Linked List file is a demonstration of our nodes that are going to be connected, and is meant to stand for vehicles. It imports or messageMaker file in our linked list file, so make sure you have the messageMaker file opened for testing.
+
 - The messageMaker is our encryption code, where it would want to encrypt the messages that are communication between the nodes. 
+
+
 
 **REQUIREMENTS** (still not figured out)
 To install the Crypto packages:
