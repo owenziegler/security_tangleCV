@@ -8,13 +8,12 @@ class Node:  #creating a node class
         self.lastWeight = 0
         self.currentNode = 0
         self.lastNode = 0
-        
+
 class LinkedList:   #creating Linked list class
     def __init__(self):
         self.head = None
         self.tail = None
         self.numOfNodes = 0
-        #self.lastnum_nodes
 
     def increment(self,data):
         temp_previous = self.head
@@ -22,24 +21,18 @@ class LinkedList:   #creating Linked list class
             temp_previous.lastWeight = temp_previous.totalWeight
             temp_previous.totalWeight += len(data)
             temp_previous.lastNode = self.numOfNodes
-            #temp_previous.currentNode += 1
             temp_previous = temp_previous.ref[0]
             
             
     def insert_at_current_node(self,data):
         if self.head is None:   #if empty
             new_node = Node(data)
-            #totalWeight = self.head    #going to store the node weight
-            
-            #new_node.ref = self.head
-            self.head = new_node    #reference to the first node
+            self.head = new_node
             self.tail = new_node
         else:
             new_node = Node(data)
-            #totalWeight = weight + self.ref     #adding current and next
             self.increment(data)
-            self.tail.ref[0] = new_node     #reference to the first node
-            
+            self.tail.ref[0] = new_node     #reference to the first node            
             self.tail = new_node    #point to the newnode, the start
         self.numOfNodes += 1 
         new_node.currentNode = self.numOfNodes
@@ -47,14 +40,10 @@ class LinkedList:   #creating Linked list class
     def insert_at_child_node(self, data):
         if self.head is None:   #if empty
             new_node = Node(data)
-            #totalWeight = self.head    #going to store the node weight
-            
-            #new_node.ref = self.head
             self.head = new_node    #reference to the first node
             self.tail = new_node
         else:
             new_node = Node(data)
-            #totalWeight = weight + self.ref     #adding current and next
             self.increment(data)
             self.tail.ref.append(new_node)     #reference to the first node
             
@@ -69,7 +58,10 @@ class LinkedList:   #creating Linked list class
         else:
             temp = self.head
             while temp is not None:
-                temp = temp.ref[0]
+                for nextItem, currNode in enumerate(temp.ref):
+                    print("",end="")
+                print("Current Weight: ", temp.weight, " ", "Total Weight:",  temp.totalWeight, " ", "Last Total Weight: ", temp.lastWeight, " ", "Current Node: ", temp.currentNode, "Current Message: ", temp.item)
+                temp = temp.ref[nextItem]
 
     def traverse_weight(self):
         if self.head is None:
@@ -80,39 +72,24 @@ class LinkedList:   #creating Linked list class
             while temp is not None:
                 for nextItem, currNode in enumerate(temp.ref):
                     print("",end="")
-                print("Current Weight: ", temp.weight, " ", "Total Weight:",  temp.totalWeight, " ", "Last Total Weight: ", temp.lastWeight, " ", "Current Node: ", temp.currentNode, " ", "Last Node: ", temp.lastNode)
-                temp = temp.ref[nextItem]
-                #temp = temp.ref[0]
-
-    def check_diff(self):
-        if self.head.totalWeight < self.head.lastWeight:
-            print("A problem have occured...")
-        #elif self.head.totalWeight > self.head.lastWeight and self.numOfNodes:
-            
-
-    def validateNode(self):
-        
-        # if self.head is None:
-        #     if self.numOfNodes is 0:
-        #         return
-        temp = self.head
-        #if self.head
-
+                temp = temp.ref[nextItem]            
 
 def main():
     list = LinkedList()
     running = True
     while running:
-        response1 = input("Would you like to add a new node, display the list, or quit? (n/d/q): ")
-        if response1 == "n":
+        response1 = input("Would you like to add a new node, display the list, or quit? (add/add-child/display/quit): ")
+        response1 = response1.upper()
+        if response1 == "ADD" or response1 == "A":
             newdata = input("Input data of new node: ")
             list.insert_at_current_node(newdata)
-        elif response1 == "d":
-            print("Displaying list:")
+        elif response1 == "DISPLAY" or response1 == "D":
+            print("Displaying information:")
             list.traverse()
-            print("Displaying weights:")
-            list.traverse_weight()
-        elif response1 == "q":
+        elif response1 == "ADD-CHILD" or response1 == "AC":
+            newdata = input("Input data of new node: ")
+            list.insert_at_child_node(newdata)
+        elif response1 == "QUIT" or response1 == "Q":
             print("Exiting...")
             exit()
         else:
