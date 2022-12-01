@@ -1,3 +1,5 @@
+import messageMaker
+
 class Node:  #creating a node class
     def __init__(self, data):
         self.item = data
@@ -8,6 +10,7 @@ class Node:  #creating a node class
         self.lastWeight = 0
         self.currentNode = 0
         self.lastNode = 0
+        self.cipherText = ""
 
 class LinkedList:   #creating Linked list class
     def __init__(self):
@@ -29,11 +32,16 @@ class LinkedList:   #creating Linked list class
             new_node = Node(data)
             self.head = new_node
             self.tail = new_node
+            AES = messageMaker.AESCipher("key phrase")
+            new_node.cipherText = AES.encrypt(data)
         else:
             new_node = Node(data)
             self.increment(data)
             self.tail.ref[0] = new_node     #reference to the first node            
             self.tail = new_node    #point to the newnode, the start
+            AES = messageMaker.AESCipher("key phrase")
+            new_node.cipherText = AES.encrypt(data)
+
         self.numOfNodes += 1 
         new_node.currentNode = self.numOfNodes
 
@@ -42,11 +50,14 @@ class LinkedList:   #creating Linked list class
             new_node = Node(data)
             self.head = new_node    #reference to the first node
             self.tail = new_node
+            AES = messageMaker.AESCipher("key phrase")
+            new_node.cipherText = AES.encrypt(data)
         else:
             new_node = Node(data)
             self.increment(data)
             self.tail.ref.append(new_node)     #reference to the first node
-            
+            AES = messageMaker.AESCipher("key phrase")
+            new_node.cipherText = AES.encrypt(data)
             self.tail = new_node    #point to the newnode, the start
         self.numOfNodes += 1 
         new_node.currentNode = self.numOfNodes            
@@ -60,7 +71,7 @@ class LinkedList:   #creating Linked list class
             while temp is not None:
                 for nextItem, currNode in enumerate(temp.ref):
                     print("",end="")
-                print("Current Weight: ", temp.weight, " ", "Total Weight:",  temp.totalWeight, " ", "Last Total Weight: ", temp.lastWeight, " ", "Current Node: ", temp.currentNode, "Current Message: ", temp.item)
+                print("Current Weight: ", temp.weight, " ", "Total Weight:",  temp.totalWeight, " ", "Last Total Weight: ", temp.lastWeight, " ", "Current Node: ", temp.currentNode, "Current Message: ", temp.item, "\nCiphertext: ", temp.cipherText, "\n")
                 temp = temp.ref[nextItem]
 
     def traverse_weight(self):
@@ -84,7 +95,7 @@ def main():
             newdata = input("Input data of new node: ")
             list.insert_at_current_node(newdata)
         elif response1 == "DISPLAY" or response1 == "D":
-            print("Displaying information:")
+            print("Displaying information:\n")
             list.traverse()
         elif response1 == "ADD-CHILD" or response1 == "AC":
             newdata = input("Input data of new node: ")
